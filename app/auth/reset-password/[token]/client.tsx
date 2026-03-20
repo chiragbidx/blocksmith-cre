@@ -1,8 +1,5 @@
 "use client";
 
-// Purpose: Client UI for /auth/reset-password/[token].
-// Shows an expired-link message or a new-password form depending on token validity.
-
 import Link from "next/link";
 import { useActionState } from "react";
 
@@ -62,16 +59,14 @@ export default function Client({ token, valid }: ClientProps) {
       <section className="mx-auto flex min-h-[720px] w-full max-w-md items-center justify-center">
         <Card className="w-full border-secondary/70 shadow-xl">
           <CardHeader className="space-y-1">
-            <CardTitle>Reset password</CardTitle>
+            <CardTitle>Reset your BrewCRM password</CardTitle>
             <CardDescription>
-              Choose a new password for your account.
+              Choose a new password for your BrewCRM account.
             </CardDescription>
           </CardHeader>
-
           <CardContent className="space-y-6">
             <form className="space-y-4" action={action}>
               <input type="hidden" name="token" value={token} />
-
               <div className="space-y-2">
                 <Label htmlFor="reset-new-password">New password</Label>
                 <Input
@@ -82,7 +77,6 @@ export default function Client({ token, valid }: ClientProps) {
                   required
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="reset-confirm-password">
                   Confirm new password
@@ -95,12 +89,10 @@ export default function Client({ token, valid }: ClientProps) {
                   required
                 />
               </div>
-
               <Button type="submit" className="w-full" disabled={pending}>
                 {pending ? "Resetting..." : "Reset password"}
               </Button>
             </form>
-
             {state.status === "error" && state.message ? (
               <p
                 className="text-sm font-medium text-destructive"
@@ -109,7 +101,6 @@ export default function Client({ token, valid }: ClientProps) {
                 {state.message}
               </p>
             ) : null}
-
             <div className="text-center">
               <Link
                 href="/auth#signin"
